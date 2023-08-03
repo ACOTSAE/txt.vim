@@ -31,7 +31,7 @@ git clone https://github.com/ACOTSAE/txt.vim.git
 
 ```vim
 " Add this line in vim-plug section:
-Plug 'flniu/txt.vim'
+Plug 'ACOTSAE/txt.vim.git'
 " Then run commands in vim:
 :so %
 :PlugInstall
@@ -78,7 +78,7 @@ git clone https://github.com/ACOTSAE/txt.vim.git
 
 ```vim
 " 在vim-plug配置节中添加这一行：
-Plug 'flniu/txt.vim'
+Plug 'ACOTSAE/txt.vim.git'
 " 然后在vim中执行：
 :so %
 :PlugInstall
