@@ -9,6 +9,11 @@ if exists("b:current_syntax")
   finish
 endif
 
+if has('multi_byte_ime')
+    highlight Cursor guibg=DarkRed guifg=NONE
+    highlight CursorIM guibg=Orange guifg=NONE
+endif
+
 " Optional reuse html syntax
 ":so $VIMRUNTIME/syntax/html.vim
 
@@ -21,7 +26,8 @@ syn keyword txtDone   DONE OK
 " ASCII Punctuation Marks
 syn match txtEPM '[~\-_+*<>\[\]{}=|#@$%&\\/:&\^\.,!?'"]'
 " CJK Punctuation Marks
-syn match txtCPM '[，。；：！？、《》【】“”‘’（）『』「」〖〗﹝﹞〔〕〈〉…·]'
+syn match txtCPM '[，。；：！？、《》【】“”‘’（）『』「」〖〗﹝﹞〔〕〈〉…·—]'
+syn match txttable '[─━│┃┄┅┆┇┈┉┊┋┌┍┎┏┐┑┒┓└└┕┖┗┘┙┚┛├├┝┞┟┠┡┢┣┤┥┦┧┨┩┪┫┬┭┮┯┰┱┲┳┴┵┶┷┸┹┺┻┼┽┾┿╀╁╂╃╄╅╆╇╈╉╊╋╌╍╎╏══║╒╓╔╔╔╕╕╖╖╗╗╘╙╚╚╛╛╜╜╝╝╞╟╟╠╡╡╢╢╣╣╤╤╥╥╦╦╧╧╨╨╩╩╪╪╫╬╬╭╮╯╰╴╵╶╷╸╹╺╻╼╽╾╿▏▕—]'
 
 syn match txtNumber '\d\+\(\.\d\+\)\='
 syn match txtLink '\<\w\+://\(\w\|[-+&=,?:./*%#]\)\+'
@@ -42,14 +48,14 @@ syn cluster txtQuotedContains contains=txtNumber,txtEPM,txtCPM,txtLink,txtQuoted
 syn region txtQuoted    start=+'+ skip=+\\\\\|\\'\|\\$+ excludenl end=+'+ end=+$+ keepend contains=@txtQuotedContains
 syn region txtQuoted    start=+"+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+ end=+$+ keepend contains=@txtQuotedContains
 syn region txtQuoted    matchgroup=txtCPM  start='[《]'  end='[》]'  contains=@txtQuotedContains
-syn region txtQuoted    matchgroup=txtCPM  start='[“]'  end='[”]'  contains=@txtQuotedContains
+syn region txtQuoted    matchgroup=txtCPM  start='[“]'  end='[”]' end=+$+  contains=@txtQuotedContains
 syn region txtQuoted    matchgroup=txtCPM  start='[『]'  end='[』]'  contains=@txtQuotedContains
 syn region txtQuoted    matchgroup=txtCPM  start='[﹝]'  end='[﹞]'  contains=@txtQuotedContains
 syn region txtQuoted    matchgroup=txtCPM  start='[〔]'  end='[〕]'  contains=@txtQuotedContains
 syn region txtQuoted    matchgroup=txtCPM  start='[〈]'  end='[〉]'  contains=@txtQuotedContains
 syn region txtQuoted    matchgroup=txtCPM  start='[「]'  end='[」]'  contains=@txtQuotedContains
-syn region txtQuoted    matchgroup=txtCPM  start='[‘]'  end='[’]'  contains=@txtQuotedContains
-syn region txtBracketed matchgroup=txtCPM  start='[(（]' end='[）)]' contains=@txtQuotedContains
+syn region txtQuoted    matchgroup=txtCPM  start='[‘]'  end='[’]' end=+$+  contains=@txtQuotedContains
+syn region txtBracketed matchgroup=txtCPM  start='[(（]' end='[）)]' end=+$+ contains=@txtQuotedContains
 
 syn cluster txtQuestionContains contains=txtNumber,txtEPM,txtCPM,txtLink
 syn match txtQuestion '^\S.\+[:：] *{*$' contains=@txtQuestionContains
@@ -70,7 +76,9 @@ hi link txtComment    Comment
 hi link txtQuoted     Statement
 hi link txtBracketed  Special
 hi link txtQuestion   Question
+hi link txtNormal     Normal
 hi link txtList       Statement
+hi def  txttable      ctermfg=DarkGreen guifg=DarkGreen
 
 let b:current_syntax = 'txt'
 " vim:et:ts=2:sw=2:fdm=marker:
