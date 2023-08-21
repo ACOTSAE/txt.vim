@@ -1,7 +1,7 @@
 " Plain text syntax file
 " Language: text/plain :)
 " Author: Francis Niu (https://github.com/flniu)
-" Last Change: 2019-10-11
+" Last Change: 2023-8-3
 
 scriptencoding utf-8
 
@@ -45,16 +45,16 @@ syn match  txtComment '\s\zs\(#\|\/\/\|--\)\s.*$'      contains=@txtCommentConta
 syn region txtComment start='\/\*' end='\*\/' contains=@txtCommentContains
 
 syn cluster txtQuotedContains contains=txtNumber,txtEPM,txtCPM,txtLink,txtQuoted,txtBracketed
-syn region txtQuoted    start=+'+ skip=+\\\\\|\\'\|\\$+ excludenl end=+'+ end=+$+ keepend contains=@txtQuotedContains
-syn region txtQuoted    start=+"+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+ end=+$+ keepend contains=@txtQuotedContains
-syn region txtQuoted    matchgroup=txtCPM  start='[《]'  end='[》]'  contains=@txtQuotedContains
-syn region txtQuoted    matchgroup=txtCPM  start='[“]'  end='[”]' end=+$+  contains=@txtQuotedContains
-syn region txtQuoted    matchgroup=txtCPM  start='[『]'  end='[』]'  contains=@txtQuotedContains
-syn region txtQuoted    matchgroup=txtCPM  start='[﹝]'  end='[﹞]'  contains=@txtQuotedContains
-syn region txtQuoted    matchgroup=txtCPM  start='[〔]'  end='[〕]'  contains=@txtQuotedContains
-syn region txtQuoted    matchgroup=txtCPM  start='[〈]'  end='[〉]'  contains=@txtQuotedContains
-syn region txtQuoted    matchgroup=txtCPM  start='[「]'  end='[」]'  contains=@txtQuotedContains
-syn region txtQuoted    matchgroup=txtCPM  start='[‘]'  end='[’]' end=+$+  contains=@txtQuotedContains
+syn match txtQuoted    '\'.*\''  contains=@txtQuotedContains
+syn match txtQuoted    '".*"'    contains=@txtQuotedContains
+syn match txtQuoted    '《.*》'  contains=@txtQuotedContains
+syn match txtQuoted    '“.*”'    contains=@txtQuotedContains
+syn match txtQuoted    '『.*』'  contains=@txtQuotedContains
+syn match txtQuoted    '﹝.*﹞'  contains=@txtQuotedContains
+syn match txtQuoted    '〔.*〕'  contains=@txtQuotedContains
+syn match txtQuoted    '〈.*〉'  contains=@txtQuotedContains
+syn match txtQuoted    '「.*」'  contains=@txtQuotedContains
+syn match txtQuoted    '‘.*’'    contains=@txtQuotedContains
 syn region txtBracketed matchgroup=txtCPM  start='[(（]' end='[）)]' end=+$+ contains=@txtQuotedContains
 
 syn cluster txtQuestionContains contains=txtNumber,txtEPM,txtCPM,txtLink
@@ -63,6 +63,8 @@ syn match txtQuestion '^\S.\+[:：] *{*$' contains=@txtQuestionContains
 syn match txtList '^\s*\zs[-+*]\ze [^ ]'
 syn match txtList '^\s*\zs[0-9A-Za-z]\+\.\ze [^ ]'
 syn match txtList '^\s*\zs(\?[0-9A-Za-z]\+)\ze [^ ]'
+"syn match txtCPM +“.*”+ keepend
+"这样匹配
 
 hi link txtTodo       Todo
 hi link txtError      Error
