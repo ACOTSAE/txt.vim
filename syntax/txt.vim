@@ -48,13 +48,15 @@ syn cluster txtQuotedContains contains=txtNumber,txtEPM,txtCPM,txtLink,txtQuoted
 syn match txtQuoted    '\'.*\''  contains=@txtQuotedContains
 syn match txtQuoted    '".*"'    contains=@txtQuotedContains
 syn match txtQuoted    '《.*》'  contains=@txtQuotedContains
-syn match txtQuoted    '“.*”'    contains=@txtQuotedContains
+"syn match txtQuoted    '“[^“”]*”'    contains=@txtQuotedContains
+syn region txtQuoted    matchgroup=txtCPM  start='[“]'  end='[”]' end=+$+  contains=@txtQuotedContains
 syn match txtQuoted    '『.*』'  contains=@txtQuotedContains
 syn match txtQuoted    '﹝.*﹞'  contains=@txtQuotedContains
 syn match txtQuoted    '〔.*〕'  contains=@txtQuotedContains
 syn match txtQuoted    '〈.*〉'  contains=@txtQuotedContains
 syn match txtQuoted    '「.*」'  contains=@txtQuotedContains
-syn match txtQuoted    '‘.*’'    contains=@txtQuotedContains
+"syn match txtQuoted    '‘.*’'    contains=@txtQuotedContains
+syn region txtQuoted    matchgroup=txtCPM  start='[‘]'  end='[’]' end=+$+  contains=@txtQuotedContains
 syn region txtBracketed matchgroup=txtCPM  start='[(（]' end='[）)]' end=+$+ contains=@txtQuotedContains
 
 syn cluster txtQuestionContains contains=txtNumber,txtEPM,txtCPM,txtLink
