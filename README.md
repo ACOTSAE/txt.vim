@@ -4,7 +4,7 @@ Forked from [flniu/txt.vim](github.com/flniu/txt.vim)
 
 Make Vim more usable for viewing and editing plain text
 
-> Version: 0.2.1
+> Version: 0.2.2
 
 ## Pros
 
@@ -15,8 +15,13 @@ Make Vim more usable for viewing and editing plain text
 
 ## Fix log
 
+0.2.1
 * Added special symbols such as "├、└、─" to highlight
 * Highlights caused by unclosed quotes and parentheses will end at the end of the line
+
+0.2.2
+* Now the dash can be highlighted correctly
+* Fixed an error that resulted in incorrect matching range for paired symbols
 
 ## Installation
 
@@ -40,6 +45,8 @@ Plug 'ACOTSAE/txt.vim.git'
 ## Bug
 
 * Due to syntax conflicts, highlighting of Em dash outside quotation marks will be different from Punctuation
+* Does not support recursive highlighting of paired punctuation marks such as quotation marks (I don't know how to write code)
+
 
 ## Compatibility
 
@@ -51,7 +58,7 @@ After the [Rainbow](github.com/luochen1990/rainbow.git) plugin is enabled, it wi
 
 让Vim更加便于查看和编辑纯文本
 
-> 版本: 0.2.1
+> 版本: 0.2.2
 
 ## 功能介绍
 
@@ -62,8 +69,13 @@ After the [Rainbow](github.com/luochen1990/rainbow.git) plugin is enabled, it wi
 
 ## 更新日志
 
+0.2.1
 * 添加了形如“├、└、─”的制表符的高亮
 * 未闭合的引号和括号导致的高亮将会于行尾结束
+
+0.2.2
+* 现在破折号可以正确高亮了
+* 修复了一个错误，会导致成对符号匹配范围错误
 
 ## 安装方法
 
@@ -86,7 +98,9 @@ Plug 'ACOTSAE/txt.vim.git'
 
 ## 缺陷
 
-* 由于语法冲突，在引号外的破折号的高亮将不同于标点符号
+~~* 由于语法冲突，在引号外的破折号的高亮将不同于标点符号~~
+
+* 不支持引号等成对标点符号的递归高亮（不会写 ）
 
 ## 兼容性
 
