@@ -8,19 +8,37 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-if line('$') >= 1000
+let g:disable_large_line_number = 0
+
+let g:line_number_limit = 1000
+
+let g:txt_enble_wrap = 1
+
+let g:define_fold = 0
+
+let g:check_ok = 0
+
+if g:disable_large_line_number && (line('$') >= g:line_number_limit)
   set nonumber
 endif
-set wrap
-set fdm=marker cms=
 
-function ToggleChecklistItem()
-  if match(getline('.'), ' OK$') == -1
-    s/$/ OK/
-  else
-    s/ OK$//
-  endif
-endfunction
-nmap <Leader><Space> :call ToggleChecklistItem()<CR>
+if g:txt_enble_wrap
+  set wrap
+endif
+
+if g:define_fold
+  set fdm=marker cms=
+endif
+
+if g:check_ok
+  function ToggleChecklistItem()
+    if match(getline('.'), ' OK$') == -1
+      silent s/$/ OK/
+    else
+      silent s/ OK$//
+    endif
+  endfunction
+  nnoremap <buffer><silent> <Leader><Space> :call ToggleChecklistItem()<CR>
+endif
 
 " vim:et:ts=2:sw=2:fdm=marker:

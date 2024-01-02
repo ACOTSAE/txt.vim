@@ -1,6 +1,8 @@
 # txt.vim
 
-Forked from [flniu/txt.vim](github.com/flniu/txt.vim)
+Forked from [flniu/txt.vim](https://github.com/flniu/txt.vim)
+
+Special thanks to [flniu](https://github.com/flniu)
 
 Make Vim more usable for viewing and editing plain text
 
@@ -16,23 +18,25 @@ Make Vim more usable for viewing and editing plain text
 ## Fix log
 
 0.2.1
+
 * Added special symbols such as "├、└、─" to highlight
 * Highlights caused by unclosed quotes and parentheses will end at the end of the line
 
 0.2.2
+
 * Now the dash can be highlighted correctly
 * Fixed an error that resulted in incorrect matching range for paired symbols
 
 ## Installation
 
-## [pathogen][]
+### [pathogen][]
 
 ```sh
 cd ~/.vim/bundle
 git clone https://github.com/ACOTSAE/txt.vim.git
 ```
 
-## [vim-plug][]
+### [vim-plug][]
 
 ```vim
 " Add this line in vim-plug section:
@@ -50,7 +54,7 @@ Plug 'ACOTSAE/txt.vim.git'
 
 ## Compatibility
 
-After the [Rainbow](github.com/luochen1990/rainbow.git) plugin is enabled, it will cause highlighting within parentheses to become invalid
+After the [Rainbow](https://github.com/luochen1990/rainbow.git) plugin is enabled, it will cause highlighting within parentheses to become invalid
 
 ----
 
@@ -70,14 +74,16 @@ After the [Rainbow](github.com/luochen1990/rainbow.git) plugin is enabled, it wi
 ## 更新日志
 
 0.2.1
+
 * 添加了形如“├、└、─”的制表符的高亮
 * 未闭合的引号和括号导致的高亮将会于行尾结束
 
 0.2.2
+
 * 现在破折号可以正确高亮了
 * 修复了一个错误，会导致成对符号匹配范围错误
 
-## 安装方法
+## 安装
 
 ### [pathogen][]
 
@@ -96,15 +102,44 @@ Plug 'ACOTSAE/txt.vim.git'
 :PlugInstall
 ```
 
+## 配置
+
+```vim
+"当行数过多时不显示行号，上限由g:line_number_limit定义
+let g:disable_large_line_number = 0
+"行数上限
+let g:line_number_limit = 1000
+"是否启用折行
+let g:txt_enble_wrap = 1
+"是否重定义折叠方式
+let g:define_fold = 0
+"OK检查
+"按键映射为<leader><space>
+let g:check_ok = 0
+```
+
 ## 缺陷
 
-~~* 由于语法冲突，在引号外的破折号的高亮将不同于标点符号~~
+* ~~由于语法冲突，在引号外的破折号的高亮将不同于标点符号~~
 
-* 不支持引号等成对标点符号的递归高亮（不会写 ）
+* 不支持引号等成对标点符号的递归高亮（不会写）
 
 ## 兼容性
 
-* [Rainbaw](github.com/luochen1990/rainbow.git)插件启用后会到导致括号内高亮失效
+* [Rainbaw](https://github.com/luochen1990/rainbow.git)插件启用后会到导致括号内高亮失效
+
+:dog:
+
+## TODO
+
+- [x] 可配置选项
+- [ ] 迁移到text文件格式
+- [ ] 更高级的括号匹配
+
+- 15
+- 15
+- 55
+
 
 [pathogen]:         https://github.com/tpope/vim-pathogen
 [vim-plug]:         https://github.com/junegunn/vim-plug/
